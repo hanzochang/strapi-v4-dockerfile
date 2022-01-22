@@ -18,3 +18,8 @@ docker-compose build
 ### access
 
 http://localhost:1337/admin
+
+### Ref.
+
+[issue] V4 images on DockerHub #321
+https://github.com/strapi/strapi-docker/issues/321
