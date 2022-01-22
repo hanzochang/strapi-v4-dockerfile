@@ -1,0 +1,38 @@
+version: "3"
+services:
+  strapi:
+    build:
+      context: ./docker/strapi/
+      args:
+        NODE_VERSION: 14.16.0
+        BASE_VERSION: latest
+        STRAPI_VERSION: 4.0.3
+    environment:
+      DATABASE_CLIENT: postgres
+      DATABASE_NAME: strapi
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_USERNAME: strapi
+      DATABASE_PASSWORD: strapi
+      AWS_ACCESS_KEY_ID:
+      AWS_ACCESS_SECRET:
+      AWS_REGION:
+      AWS_BUCKET:
+      CDN_BASE_URL:
+    volumes:
+      - ./app:/srv/app
+    ports:
+      - 1337:1337
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_DB: strapi
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: strapi
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
